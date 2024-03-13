@@ -12,10 +12,10 @@ public class BoundaryEmmenager {
 	public void emmenager(String nomVisiteur) {
 		if (controlEmmenager.isHabitant(nomVisiteur)) {
 			System.out.println(
-					"Mais vous êtes déjà un habitant du village !");
+					"Mais vous etes deja� un habitant du village !");
 		} else {
 			StringBuilder question = new StringBuilder();
-			question.append("Êtes-vous :\n");
+			question.append("etes-vous :\n");
 			question.append("1 - un druide.\n");
 			question.append("2 - un gaulois.\n");
 			int choixUtilisateur = -1;
@@ -24,10 +24,17 @@ public class BoundaryEmmenager {
 				switch (choixUtilisateur) {
 				case 1:
 					emmenagerDruide(nomVisiteur);
-					break;
+					break;	
 
 				case 2:
-					//TODO a completer
+					StringBuilder EstGaulois = new StringBuilder();
+					EstGaulois.append("Bienvenue villageois ");
+					EstGaulois.append(nomVisiteur);
+					EstGaulois.append(". \n");
+					EstGaulois.append("Quelle est votre force ? \n");
+					int force = Clavier.entrerEntier(EstGaulois.toString());
+					controlEmmenager.ajouterGaulois(nomVisiteur, force);
+					
 					break;
 
 				default:
@@ -40,6 +47,27 @@ public class BoundaryEmmenager {
 	}
 
 	private void emmenagerDruide(String nomVisiteur) {
-		//TODO a completer
+		StringBuilder EstDruide = new StringBuilder();
+		EstDruide.append("Bienvenue Druide ");
+		EstDruide.append(nomVisiteur);
+		EstDruide.append(". \n");
+		EstDruide.append("Quelle est votre force ? \n");
+		int ForceDruide = Clavier.entrerEntier(EstDruide.toString());
+		int effetPotionMax;
+		int effetPotionMin;
+		do {
+			EstDruide.append("Quelle est la force de la potion la plus faible que vous produisez ?  \n");
+			effetPotionMin = Clavier.entrerEntier(EstDruide.toString());
+			EstDruide.append("Quelle est la force de la potion la plus forte que vous produisez ?  \n");
+			effetPotionMax = Clavier.entrerEntier(EstDruide.toString());
+			if(effetPotionMax < effetPotionMin) {
+				EstDruide.append("Attention Druide, vous vous etes tromp� entre le minimum et le maximum !  \n");
+			}
+			
+		} while(effetPotionMax < effetPotionMin); 
+		
+		controlEmmenager.ajouterDruide(nomVisiteur, ForceDruide, effetPotionMin, effetPotionMax);
+		
+		
 	}
 }
