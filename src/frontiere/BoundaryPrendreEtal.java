@@ -13,25 +13,19 @@ public class BoundaryPrendreEtal {
 	}
 
 	public void prendreEtal(String nomVendeur) {
-		StringBuilder etal = new StringBuilder();
+		
 		
 		if(!controlPrendreEtal.verifierIdentite(nomVendeur)){
-			etal.append("Je suis désolé ");
-			etal.append(nomVendeur);
-			etal.append(" mais il faut etre un habitant de notre village pour commercer ici. \n");
+			System.out.println("Je suis désolé " + nomVendeur + " mais il faut etre un habitant de notre village pour commercer ici. \n" );
 		}else {
-			
-		etal.append("Bonjour ");
-		etal.append(nomVendeur);
-		etal.append(", je vais regarder si je peux trouver un etal. \n");
+			System.out.println("Bonjour " + nomVendeur + ", je vais regarder si je peux trouver un etal. \n" );
+
 		
 		if(!controlPrendreEtal.resteEtals()) {
-			etal.append("Désolé ");
-			etal.append(nomVendeur);
-			etal.append(", je n'ai plus d'etal qui ne soit pas déja occupé. \n");
+			System.out.println("Désolé " + nomVendeur + ", je n'ai plus d'etals qui ne soit pas déja occupé. \n");
 		}else {
 			installerVendeur(nomVendeur);	
-		}
+		} 
 			
 		
 		
@@ -44,9 +38,14 @@ public class BoundaryPrendreEtal {
 		installer.append("C'est parfait, il me reste un étal pour vous ! \n");
 		installer.append("Il me faudrait quelques renseignements : \n");
 		installer.append("Quel produit souhaitez-vous vendre ? \n");
-		String produit = Clavier.entrerString(installer.toString());
-		//TODO Creer une methode entrerString dans Clavier
-		installer.append("Combien voulez-vous en vendre ?\n");
-		int nbProduit = Clavier.entrerEntier(installer.toString());
+		System.out.println(installer);
+		
+		String produit = scan.next();
+		
+		int nbProduit = Clavier.entrerEntier("Combien voulez-vous en vendre ?\n");
+		
+		int numeroEtal = controlPrendreEtal.prendreEtal(nomVendeur, produit, nbProduit);
+		
+		System.out.println("Le vendeur " + nomVendeur + " s'est intallé à l'étal n° " + numeroEtal + ". \n" );
 	}
 }

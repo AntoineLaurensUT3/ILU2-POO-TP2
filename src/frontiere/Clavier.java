@@ -55,10 +55,7 @@ public class Clavier {
 				scan.next();
 				entreeCorrecte = false;
 			}
-		} while(!(entreeCorrecte && string == ""));
-		
-		
-		
+		} while(!(entreeCorrecte && string.equals("")));
 		return string;
 	}
 

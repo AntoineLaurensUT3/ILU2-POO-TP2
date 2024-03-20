@@ -34,6 +34,7 @@ public class Scenario {
 		ControlTrouverEtalVendeur controlTrouverEtalVendeur = new ControlTrouverEtalVendeur(
 				village);
 
+
 		ControlPrendreEtal controlChercherEtal = new ControlPrendreEtal(
 				controlVerifierIdentite, village);
 		ControlLibererEtal controlLibererEtal = new ControlLibererEtal(
